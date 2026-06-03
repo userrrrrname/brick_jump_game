@@ -37,7 +37,6 @@ dead_count = 0
 jumper = Jumper(0, 0, 16, 16, 5, 5, -8, 0.5)
 
 LIMIT_TIME = 0
-start_time = pg.time.get_ticks()
 
 def is_on_brick(jumper, bricks):
     test_jumper = jumper.rect.copy()         #colliderect()는 객체끼리 겹쳐있어야 충돌로 판단, 그래서 테스트용 점퍼를 생성해서 아주 살짝 내려 colliderect() 판정 되게
@@ -69,7 +68,8 @@ while running:                          #게임이 진행중일 때
                                                                                             #-> y가 가장 작은 brick을 찾고 y가 같다면 x가 가장 작은 brick을 찾음
                             jumper.rect.centerx = start_brick.centerx
                             jumper.rect.bottom = start_brick.top
-                            LIMIT_TIME = 5 + brick_count
+                            LIMIT_TIME = brick_count + 5
+                            start_time = pg.time.get_ticks()
                             state = "game"
                         else:
                             brick_count_text = ""                   #입력된 벽돌 개수가 25보다 크면 brick_count_text 초기화
